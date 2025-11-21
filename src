@@ -1,9 +1,0 @@
-<script>start("/Users/veronicapetti/Downloads/Address-Dock-main/src/");</script>
-<script>onHasParentDirectory();</script>
-<script>addRow("constants","constants",1,160,"160 B",1742380218,"3/19/25, 6:30:18 AM");</script>
-<script>addRow("endpoints","endpoints",1,128,"128 B",1763498376,"11/18/25, 3:39:36 PM");</script>
-<script>addRow("interfaces","interfaces",1,96,"96 B",1742380218,"3/19/25, 6:30:18 AM");</script>
-<script>addRow("services","services",1,160,"160 B",1742380218,"3/19/25, 6:30:18 AM");</script>
-<script>addRow("app.ts","app.ts",0,1018,"1018 B",1742380218,"3/19/25, 6:30:18 AM");</script>
-<script>addRow("router.ts","router.ts",0,1225,"1.2 kB",1742380218,"3/19/25, 6:30:18 AM");</script>
-<script>addRow("server.ts","server.ts",0,936,"936 B",1742380218,"3/19/25, 6:30:18 AM");</script>
