@@ -8,6 +8,57 @@
 <body>
     <input type="text" id="searchInput" placeholder="Enter City, State, or Postal Code">
     <button type="button" onclick="searchLocation()">Start Search!</button>
-
+    <table id="results">
+        <thead>
+            <tr>
+                <th>
+                    City
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    Postal Code
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+        async function searchLocation() {
+        const query = document.getElementById('searchInput').value.trim();
+        if (!query) return;
+        
+        const apiUrl = `link${query}`;
+        
+        try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+        alert('No results found');
+        return;
+        }
+        
+        const data = await response.json();
+        
+        const table = document.getElementById('results');
+        const tbody = document.getElementById('resultsBody');
+        tbody.innerHTML = '';
+        
+        data.places.forEach(place => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${place["place name"]}</td>
+        <td>${place["state"]}</td>
+        <td>${data["post code"]}</td>
+        `;
+        tbody.appendChild(row);
+        });
+        
+        table.style.display = 'table';
+        } catch (error) {
+        console.error(error);
+        alert('Error fetching data');
+        }
+        }
+        </script>
 </body>
 </html>
