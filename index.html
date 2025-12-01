@@ -3,46 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Area finder</title>
 </head>
 <body>
+    <h1>Area Finder</h1>
     <input type="text" id="searchInput" placeholder="Enter City, State, or Postal Code">
     <button type="button" onclick="searchLocation()">Start Search!</button>
     <table id="results">
-        <thead>
-            <tr>
-                <th>
-                    City
-                </th>
-                <th>
-                    State
-                </th>
-                <th>
-                    Postal Code
-                </th>
-            </tr>
-        </thead>
-    </table>
+      <thead>
+          <tr>
+              <th>City</th>
+              <th>State</th>
+              <th>Postal Code</th>
+          </tr>
+      </thead>
+  
+      <tbody id="resultsBody"></tbody>
+  </table>
     <script>
         async function searchLocation() {
         const query = document.getElementById('searchInput').value.trim();
         if (!query) return;
-        
-        const apiUrl = `link${query}`;
-        
+        const apiUrl = `http://localhost:3000/endpoints/address.endpoint.ts/${query}`;
         try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
         alert('No results found');
         return;
         }
-        
         const data = await response.json();
-        
         const table = document.getElementById('results');
         const tbody = document.getElementById('resultsBody');
         tbody.innerHTML = '';
-        
         data.places.forEach(place => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -52,7 +45,6 @@
         `;
         tbody.appendChild(row);
         });
-        
         table.style.display = 'table';
         } catch (error) {
         console.error(error);
@@ -60,5 +52,52 @@
         }
         }
         </script>
+
+        <!-- test to make sure search buttion works -->
+        <!-- <script>
+            function searchLocation() {
+              const query = document.getElementById("searchInput").value.trim();
+          
+              if (query === "") {
+                alert("Button works! You didn’t type anything yet.");
+              } else {
+                alert("Button works! You typed: " + query);
+              }
+            }
+          </script> -->
+
+
+          <!-- test to make sure infomation will fill -->
+        <!--   <script>
+            function searchLocation() {
+              const tbody = document.getElementById("resultsBody");
+              const table = document.getElementById("results");
+          
+              tbody.innerHTML = "";
+
+              const fakeData = [
+                {city: "Rochester",
+                state: "NY",
+                postal:"14623",},
+                {city: "Schenectady",
+                state: "NY",
+                postal:"12345"}
+            ];
+          
+            fakeData.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.city}</td>
+        <td>${item.state}</td>
+        <td>${item.postal}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    table.style.display = "table";
+          
+    console.log("Test rows added!");
+    }
+    </script> -->   
 </body>
 </html>
